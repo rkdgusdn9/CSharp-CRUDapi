@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductApiApplication.Models;
+using ProductApiApplication.Services;
 using ProductApiApplication.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -13,48 +14,43 @@ namespace ProductApiApplication.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private static readonly IList<Product> _products = new List<Product>
-        {
-            new Product(){ Id = 1, Name = "Apple"},
-            new Product(){ Id = 2, Name = "Banana"},
-            new Product(){ Id = 3, Name = "Cherry"},
-            new Product(){ Id = 4, Name = "Durian"},
-            new Product(){ Id = 5, Name = "Eggplant"},
-            new Product(){ Id = 6, Name = "Feijoa"},
-            new Product(){ Id = 7, Name = "Grape"},
-            new Product(){ Id = 8, Name = "Honeydew"},
-        };
+        private readonly IProductService _productService;
 
-        public IList<Product> GetAll()
+        public ProductController(IProductService productService)
         {
-            return _products;
+            _productService = productService;
         }
 
-        [HttpGet]
+        [HttpGet("{getbyid}/{id:int}")]
         public IActionResult GetbyId(int id)
         {
-            return Ok();
+            var product = _productService.GetById(id);
+            if (product == null)
+            {
+                return NotFound("product with id not found");
+            }
+            return Ok(product);
         }
 
-       [HttpGet]
+       [HttpGet("{name}")]
         public IActionResult Search(string searchTerm)
         {
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("{create}")]
         public IActionResult Create(CreateProductViewModel requestModel)
         {
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("{update}")]
         public IActionResult Update(UpdateProductViewModel model)
         {
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("{delete}")]
         public IActionResult Delete(int id)
         {
             return Ok();
