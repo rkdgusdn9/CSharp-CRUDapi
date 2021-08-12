@@ -9,7 +9,7 @@ namespace ProductApiApplication.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-    public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
@@ -31,7 +31,7 @@ namespace ProductApiApplication.Services
                 Id = _productRepository.GetAll().Max(x => x.Id) + 1,
                 Name = name
             };
-            
+
             _productRepository.Add(newProduct);
         }
 
@@ -43,6 +43,16 @@ namespace ProductApiApplication.Services
                 Name = newName
             };
             return _productRepository.Update(updateProduct);
+        }
+
+        public void Delete(int id)
+        {
+            var removeProduct = new Product()
+            {
+                Id = id
+            };
+
+            _productRepository.Delete(removeProduct);
         }
     }
 }

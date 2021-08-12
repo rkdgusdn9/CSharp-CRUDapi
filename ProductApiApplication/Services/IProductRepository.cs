@@ -12,5 +12,7 @@ namespace ProductApiApplication.Services
 
         void Add(Product newproduct);
         Product Update(Product updateProduct);
+
+        void Delete(Product removeProduct);
     }
 }

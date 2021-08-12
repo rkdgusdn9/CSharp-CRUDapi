@@ -10,8 +10,8 @@ namespace ProductApiApplication.Services
     {
         Product GetById(int id);
         IEnumerable<Product> SearchByName(string searchTerm);
-
         void Add(string name);
         Product Update(int id, string name);
+        void Delete(int id);
     }
 }

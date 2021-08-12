@@ -40,5 +40,10 @@ namespace ProductApiApplication.Services
 
             return existProduct;
         }
+
+        public void Delete(Product removeProduct)
+        {
+            _products.Remove(removeProduct);
+        }
     }
 }

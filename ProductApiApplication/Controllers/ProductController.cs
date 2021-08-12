@@ -18,7 +18,7 @@ namespace ProductApiApplication.Controllers
 
         public ProductController(IProductService productService)
         {
-            _productService = productService;            
+            _productService = productService;
         }
 
 
@@ -33,7 +33,7 @@ namespace ProductApiApplication.Controllers
             return Ok(product);
         }
 
-       [HttpGet("search")]
+        [HttpGet("search")]
         public IActionResult Search(string searchTerm)
         {
             var products = _productService.SearchByName(searchTerm);
@@ -43,7 +43,7 @@ namespace ProductApiApplication.Controllers
         [HttpPost("create")]
         public IActionResult Create(CreateProductViewModel requestModel)
         {
-           _productService.Add(requestModel.Name);
+            _productService.Add(requestModel.Name);
             return Ok();
         }
 
@@ -54,9 +54,10 @@ namespace ProductApiApplication.Controllers
             return Ok(updated);
         }
 
-        [HttpPost("{delete}")]
+        [HttpPost("delete")]
         public IActionResult Delete(int id)
         {
+            _productService.Delete(id);
             return Ok();
         }
     }
