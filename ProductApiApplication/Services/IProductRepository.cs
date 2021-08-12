@@ -11,5 +11,6 @@ namespace ProductApiApplication.Services
         IList<Product> GetAll();
 
         void Add(Product newproduct);
+        Product Update(Product updateProduct);
     }
 }

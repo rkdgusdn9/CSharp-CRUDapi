@@ -43,14 +43,15 @@ namespace ProductApiApplication.Controllers
         [HttpPost("create")]
         public IActionResult Create(CreateProductViewModel requestModel)
         {
-            _productService.Add(requestModel.Name);
+           _productService.Add(requestModel.Name);
             return Ok();
         }
 
         [HttpPost("update")]
         public IActionResult Update(UpdateProductViewModel model)
         {
-            return Ok();
+            var updated = _productService.Update(model.Id, model.Name);
+            return Ok(updated);
         }
 
         [HttpPost("{delete}")]

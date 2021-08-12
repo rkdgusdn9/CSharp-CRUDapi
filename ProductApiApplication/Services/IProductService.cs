@@ -12,5 +12,6 @@ namespace ProductApiApplication.Services
         IEnumerable<Product> SearchByName(string searchTerm);
 
         void Add(string name);
+        Product Update(int id, string name);
     }
 }

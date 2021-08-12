@@ -31,6 +31,18 @@ namespace ProductApiApplication.Services
                 Id = _productRepository.GetAll().Max(x => x.Id) + 1,
                 Name = name
             };
+            
+            _productRepository.Add(newProduct);
+        }
+
+        public Product Update(int id, string newName)
+        {
+            var updateProduct = new Product()
+            {
+                Id = id,
+                Name = newName
+            };
+            return _productRepository.Update(updateProduct);
         }
     }
 }

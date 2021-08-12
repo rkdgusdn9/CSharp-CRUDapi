@@ -29,5 +29,16 @@ namespace ProductApiApplication.Services
         {
             _products.Add(newproduct);
         }
+
+        public Product Update(Product updateProduct)
+        {
+            var existProduct = _products.SingleOrDefault(x => x.Id == updateProduct.Id);
+            if (existProduct != null)
+            {
+                existProduct.Name = updateProduct.Name;
+            }
+
+            return existProduct;
+        }
     }
 }
