@@ -32,10 +32,11 @@ namespace ProductApiApplication.Controllers
             return Ok(product);
         }
 
-       [HttpGet("{name}")]
+       [HttpGet("{search}")]
         public IActionResult Search(string searchTerm)
         {
-            return Ok();
+            var products = _productService.SearchByName(searchTerm);
+            return Ok(products);
         }
 
         [HttpPost("{create}")]

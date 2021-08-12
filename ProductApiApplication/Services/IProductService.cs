@@ -9,5 +9,6 @@ namespace ProductApiApplication.Services
     public interface IProductService
     {
         Product GetById(int id);
+        IEnumerable<Product> SearchByName(string searchTerm);
     }
 }

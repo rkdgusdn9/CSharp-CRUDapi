@@ -18,5 +18,10 @@ namespace ProductApiApplication.Services
         {
             return _productRepository.GetAll().SingleOrDefault(x => x.Id == id);
         }
+
+        public IEnumerable<Product> SearchByName(string searchTerm)
+        {
+            return _productRepository.GetAll().Where(x => x.Name.Contains(searchTerm));
+        }
     }
 }
