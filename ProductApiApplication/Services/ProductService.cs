@@ -23,5 +23,14 @@ namespace ProductApiApplication.Services
         {
             return _productRepository.GetAll().Where(x => x.Name.Contains(searchTerm));
         }
+
+        public void Add(string name)
+        {
+            var newProduct = new Product()
+            {
+                Id = _productRepository.GetAll().Max(x => x.Id) + 1,
+                Name = name
+            };
+        }
     }
 }

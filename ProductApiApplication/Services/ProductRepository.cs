@@ -24,5 +24,10 @@ namespace ProductApiApplication.Services
         {
             return _products;
         }
+
+        public void Add(Product newproduct)
+        {
+            _products.Add(newproduct);
+        }
     }
 }

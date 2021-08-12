@@ -18,10 +18,11 @@ namespace ProductApiApplication.Controllers
 
         public ProductController(IProductService productService)
         {
-            _productService = productService;
+            _productService = productService;            
         }
 
-        [HttpGet("{getbyid}/{id:int}")]
+
+        [HttpGet("getbyid/{id:int}")]
         public IActionResult GetbyId(int id)
         {
             var product = _productService.GetById(id);
@@ -32,20 +33,21 @@ namespace ProductApiApplication.Controllers
             return Ok(product);
         }
 
-       [HttpGet("{search}")]
+       [HttpGet("search")]
         public IActionResult Search(string searchTerm)
         {
             var products = _productService.SearchByName(searchTerm);
             return Ok(products);
         }
 
-        [HttpPost("{create}")]
+        [HttpPost("create")]
         public IActionResult Create(CreateProductViewModel requestModel)
         {
+            _productService.Add(requestModel.Name);
             return Ok();
         }
 
-        [HttpPost("{update}")]
+        [HttpPost("update")]
         public IActionResult Update(UpdateProductViewModel model)
         {
             return Ok();

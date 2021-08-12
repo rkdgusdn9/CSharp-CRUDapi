@@ -9,5 +9,7 @@ namespace ProductApiApplication.Services
     public interface IProductRepository
     {
         IList<Product> GetAll();
+
+        void Add(Product newproduct);
     }
 }
