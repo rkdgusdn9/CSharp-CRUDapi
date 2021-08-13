@@ -1,8 +1,6 @@
 ﻿using ProductApiApplication.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductApiApplication.Services
 {
@@ -45,15 +43,12 @@ namespace ProductApiApplication.Services
             return _productRepository.Update(updateProduct);
         }
 
-        public Product Delete(int id, string name)
+        public void Delete(int id)
         {
-            var removeProduct = new Product()
-            {
-                Id = id,
-                Name = name
-            };
+               var removeProduct = _productRepository.GetAll().SingleOrDefault(x => x.Id == id);
 
-            return _productRepository.Delete(removeProduct);
+                _productRepository.Delete(removeProduct);
         }
+        
     }
 }

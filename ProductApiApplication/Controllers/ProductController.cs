@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ProductApiApplication.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProductApiApplication.Services;
 using ProductApiApplication.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductApiApplication.Controllers
 {
@@ -28,7 +22,7 @@ namespace ProductApiApplication.Controllers
             var product = _productService.GetById(id);
             if (product == null)
             {
-                return NotFound("product with id not found");
+                return NotFound("Product with id not found");
             }
             return Ok(product);
         }
@@ -41,24 +35,38 @@ namespace ProductApiApplication.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult Create(CreateProductViewModel requestModel)
+        public IActionResult Create(CreateProductRequestApiModel requestModel)
         {
-           var created = _productService.Add(requestModel.Name);
+            var created = _productService.Add(requestModel.Name);
+            if (created == null)
+            {
+                return NotFound("Name cannot be null");
+            }           
+            
             return Ok(created);
         }
 
         [HttpPost("update")]
-        public IActionResult Update(UpdateProductViewModel model)
+        public IActionResult Update(UpdateProductRequestApiModel model)
         {
             var updated = _productService.Update(model.Id, model.Name);
+            if (updated == null)
+            {
+                return NotFound("Id and new name cannot be null");
+            }
             return Ok(updated);
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(DeleteProductViewModel delModel)
+        public IActionResult Delete(DeleteProductRequestApiModel delModel)
         {
-            var deleted = _productService.Delete(delModel.Id, delModel.Name);
-            return Ok(deleted);
+            var product = _productService.GetById(delModel.Id);
+            if (product == null)
+            {
+                return NotFound("Product with id not found");
+            }
+            _productService.Delete(delModel.Id);
+            return Ok();
         }
     }
 }

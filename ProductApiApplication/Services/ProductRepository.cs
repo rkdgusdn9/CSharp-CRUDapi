@@ -1,8 +1,6 @@
 ﻿using ProductApiApplication.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductApiApplication.Services
 {
@@ -43,11 +41,9 @@ namespace ProductApiApplication.Services
             return existProduct;
         }
 
-        public Product Delete(Product removeProduct)
+        public void Delete(Product removeProduct)
         {
             _products.Remove(removeProduct);
-
-            return removeProduct;
         }
     }
 }
