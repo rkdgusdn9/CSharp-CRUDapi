@@ -43,8 +43,8 @@ namespace ProductApiApplication.Controllers
         [HttpPost("create")]
         public IActionResult Create(CreateProductViewModel requestModel)
         {
-            _productService.Add(requestModel.Name);
-            return Ok();
+           var created = _productService.Add(requestModel.Name);
+            return Ok(created);
         }
 
         [HttpPost("update")]
@@ -55,10 +55,10 @@ namespace ProductApiApplication.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(DeleteProductViewModel delModel)
         {
-            _productService.Delete(id);
-            return Ok();
+            var deleted = _productService.Delete(delModel.Id, delModel.Name);
+            return Ok(deleted);
         }
     }
 }

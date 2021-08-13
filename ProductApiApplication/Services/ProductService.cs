@@ -24,7 +24,7 @@ namespace ProductApiApplication.Services
             return _productRepository.GetAll().Where(x => x.Name.Contains(searchTerm));
         }
 
-        public void Add(string name)
+        public Product Add(string name)
         {
             var newProduct = new Product()
             {
@@ -32,7 +32,7 @@ namespace ProductApiApplication.Services
                 Name = name
             };
 
-            _productRepository.Add(newProduct);
+            return _productRepository.Add(newProduct);
         }
 
         public Product Update(int id, string newName)
@@ -45,14 +45,15 @@ namespace ProductApiApplication.Services
             return _productRepository.Update(updateProduct);
         }
 
-        public void Delete(int id)
+        public Product Delete(int id, string name)
         {
             var removeProduct = new Product()
             {
-                Id = id
+                Id = id,
+                Name = name
             };
 
-            _productRepository.Delete(removeProduct);
+            return _productRepository.Delete(removeProduct);
         }
     }
 }

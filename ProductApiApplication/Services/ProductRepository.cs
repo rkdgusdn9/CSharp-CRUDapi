@@ -25,9 +25,11 @@ namespace ProductApiApplication.Services
             return _products;
         }
 
-        public void Add(Product newproduct)
+        public Product Add(Product newProduct)
         {
-            _products.Add(newproduct);
+            _products.Add(newProduct);
+
+            return newProduct;
         }
 
         public Product Update(Product updateProduct)
@@ -41,9 +43,11 @@ namespace ProductApiApplication.Services
             return existProduct;
         }
 
-        public void Delete(Product removeProduct)
+        public Product Delete(Product removeProduct)
         {
             _products.Remove(removeProduct);
+
+            return removeProduct;
         }
     }
 }

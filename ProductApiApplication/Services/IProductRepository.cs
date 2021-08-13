@@ -10,9 +10,9 @@ namespace ProductApiApplication.Services
     {
         IList<Product> GetAll();
 
-        void Add(Product newproduct);
+        Product Add(Product newProduct);
         Product Update(Product updateProduct);
 
-        void Delete(Product removeProduct);
+        Product Delete(Product removeProduct);
     }
 }
